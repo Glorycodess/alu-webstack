@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Configuring a bash script
+# This bash script gets information from
+# a domain and subdomain
+
+researcher() {
+    domain=$1
+    subdomain=$2
+    record_type=$3
+
+    # Use dig to get the DNS record of the specified type for the subdomain
+    result=$(dig +short "$subdomain.$domain" "$record_type" | awk '{print $1}')
+
+    # If result is not empty, print the result
+    if [[ -n "$result" ]]; then
+        echo "The subdomain $subdomain is a $record_type record and points to $resu
